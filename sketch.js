@@ -1,0 +1,96 @@
+var count = 0;
+// document.getElementById('main').innerHTML = 
+// new Array(1000).fill(255).map((d,i) => `${i+1}行目…………………………`).join('<br />');
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  canvasSetup;
+}
+function setup() {
+  canvas = createCanvas(windowWidth, windowHeight * 2, WEBGL);
+  canvas.position(0,0);
+  canvas.style('z-index','-1');
+  background(0);
+  frameRate(120);
+  //canvas.style('position','fixed');
+}
+function draw() {
+  var scrY = window.scrollY;
+  console.log(scrY);
+ //translate(width/2,height/2);
+ count  = scrY;
+ push();
+ translate(0, 10)
+ if(scrY <= 6000){
+   drawTorus();
+ }
+ pop();
+}
+
+function drawTorus(){
+  var x,x2,y,y2,z,z2;
+  var u,v,u2,v2;
+  var r,R;
+  var d;
+
+  stroke(255);
+  rotateX(45);
+
+  r = width/10;
+  R = r * 2;
+  
+  u = random(TWO_PI);
+  v = random(TWO_PI);
+  u2 = random(TWO_PI);
+  v2 = random(TWO_PI);
+  
+  x = (R + r * cos(u)) * cos(v);
+  y = (R + r * cos(u)) * sin(v);
+  z = r * sin(u);
+  
+  x2 = (R + r * cos(u2)) * cos(v2);
+  y2 = (R + r * cos(u2)) * sin(v2);
+  z2 = r * sin(u2);
+  
+  d = dist(x,y,z,x2,y2,z2);
+  
+  if(d <= R){
+    stroke(255,255,255,40);
+    strokeWeight(0.3);
+    line(x,y,z,x2,y2,z2);
+    
+    stroke(255);
+    strokeWeight(5);
+    point(x,y,z);
+    point(x2,y2,z2);
+  }
+}
+
+function drawRose(n,d){
+  var x1,x2;
+  var y1,y2;
+  let radius = 150;
+  let theta;
+  let a;
+  let numc = 600;
+
+  x1 = 0;
+  y1 = 0;
+
+  for(let i=0; i<=numc * d; i++){
+    theta = i * 360.0 / numc;
+    a = radius * sin(n / d * theta);
+    x2 = a * cos(theta);
+    y2 = a * sin(theta);
+    line(x1,y1,x2,y2);
+    x1 = x2;
+    y1 = y2;
+  }
+
+}
+
+// function keyPressed(){
+//   if(keyPressed){
+//     drawTorus();
+//   }
+// }
