@@ -1,4 +1,5 @@
 var count = 0;
+const windowSizeHight = window.innerHeight * 4;
 // document.getElementById('main').innerHTML = 
 // new Array(1000).fill(255).map((d,i) => `${i+1}行目…………………………`).join('<br />');
 
@@ -7,7 +8,7 @@ function windowResized() {
   canvasSetup;
 }
 function setup() {
-  canvas = createCanvas(windowWidth, windowHeight * 2, WEBGL);
+  canvas = createCanvas(windowWidth, windowSizeHight, WEBGL);
   canvas.position(0,0);
   canvas.style('z-index','-1');
   background(0);
@@ -15,16 +16,24 @@ function setup() {
   //canvas.style('position','fixed');
 }
 function draw() {
+  //background(0);
   var scrY = window.scrollY;
   console.log(scrY);
- //translate(width/2,height/2);
- count  = scrY;
- push();
- translate(0, 10)
- if(scrY <= 6000){
-   drawTorus();
- }
- pop();
+
+  strokeWeight(200);
+  point(0,0,0);
+  strokeWeight(2);
+  noFill();
+  box(200,200,200);
+
+  translate(0,-windowSizeHight/2);
+  strokeWeight(200);
+  point(0,0,0);
+
+  count  = scrY;
+  if(scrY <= 6000){
+    drawTorus();
+  }
 }
 
 function drawTorus(){
@@ -33,6 +42,8 @@ function drawTorus(){
   var r,R;
   var d;
 
+  push();
+  //translate(0, -500)
   stroke(255);
   rotateX(45);
 
@@ -86,7 +97,7 @@ function drawRose(n,d){
     x1 = x2;
     y1 = y2;
   }
-
+  pop();
 }
 
 // function keyPressed(){
