@@ -1,5 +1,6 @@
 var count = 0;
-const windowSizeHight = window.innerHeight * 4;
+
+const windowSizeHight = window.innerHeight * 6;
 // document.getElementById('main').innerHTML = 
 // new Array(1000).fill(255).map((d,i) => `${i+1}行目…………………………`).join('<br />');
 
@@ -13,39 +14,46 @@ function setup() {
   canvas.style('z-index','-1');
   background(0);
   frameRate(120);
+
   //canvas.style('position','fixed');
 }
 function draw() {
-  //background(0);
+  translate(0,-windowSizeHight/2);
+  background(0);
   var scrY = window.scrollY;
   console.log(scrY);
+  textSize(40);
+  text(scrY);
+
+  // strokeWeight(2);
+  // noFill();
+  // box(200,200,200);
 
   strokeWeight(200);
   point(0,0,0);
-  strokeWeight(2);
-  noFill();
-  box(200,200,200);
 
-  translate(0,-windowSizeHight/2);
-  strokeWeight(200);
-  point(0,0,0);
+  // count  = scrY;
+  // if(scrY <= 6000){
+  //   drawTorus(0,500);
+  // }
 
-  count  = scrY;
-  if(scrY <= 6000){
-    drawTorus();
-  }
+  drawRose(0,scrY + 400,scrY/100,2);
+  // strokeWeight(200);
+  // stroke(255,0,0);
+  // point(0,200,0);
 }
 
-function drawTorus(){
+function drawTorus(_x,_y){
   var x,x2,y,y2,z,z2;
   var u,v,u2,v2;
   var r,R;
   var d;
 
   push();
-  //translate(0, -500)
+  translate(_x, _y);
+  noFill();
   stroke(255);
-  rotateX(45);
+  rotateX(70);
 
   r = width/10;
   R = r * 2;
@@ -75,12 +83,16 @@ function drawTorus(){
     point(x,y,z);
     point(x2,y2,z2);
   }
+  pop();
 }
 
-function drawRose(n,d){
+function drawRose(_x,_y,n,d){
+  push();
+  noFill();
+  translate(_x,_y);
   var x1,x2;
   var y1,y2;
-  let radius = 150;
+  let radius = window.innerWidth/4;
   let theta;
   let a;
   let numc = 600;
@@ -93,6 +105,8 @@ function drawRose(n,d){
     a = radius * sin(n / d * theta);
     x2 = a * cos(theta);
     y2 = a * sin(theta);
+    strokeWeight(0.5);
+    stroke(255,255,255,50);
     line(x1,y1,x2,y2);
     x1 = x2;
     y1 = y2;
