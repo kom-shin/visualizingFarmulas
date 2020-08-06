@@ -1,10 +1,9 @@
 var count = 0;
 let N = 255;
 let L = 255;
+let interval = 1000;
 
 const windowSizeHight = window.innerHeight * 6;
-// document.getElementById('main').innerHTML = 
-// new Array(1000).fill(255).map((d,i) => `${i+1}行目…………………………`).join('<br />');
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
@@ -40,6 +39,8 @@ function draw() {
   }else{
     drawWave(-window.innerWidth/2,1000,scrY/10);
   }
+
+  //drawCircle(0,500,scrY/10);
 
   // count  = scrY;
   // if(scrY <= 6000){
@@ -137,6 +138,24 @@ function drawRose(_x,_y,n,d){
   pop();
 }
 
+function drawHypocycloid(_x,_y,n){
+  push();
+  noFill();
+  translate(_x,_y);
+  var x1,x2;
+  var y1,y2;
+  let radius = window.innerWidth/4;
+  let a;
+
+  x1 = 0;
+  y1 = 0;
+
+  // for(let i = 0; i<){
+
+  // }
+
+}
+
 function drawMandelbrot(_x,_y){
 
   var SCALE = 3.0;
@@ -206,15 +225,28 @@ function drawWave(_x,_y,theta){
   stroke(255);
   point(cx,cy);
   point(sx,sy);
-  point(tx,ty);
+  //point(tx,ty);
   strokeWeight(2);
   line(0,0,window.innerWidth,0);
 
   pop();
 }
 
-// function keyPressed(){
-//   if(keyPressed){
-//     drawTorus();
-//   }
-// }
+function drawCircle(_x,_y,theta){
+  var x = 0;
+  var y = 0;
+  let a = 100;
+
+  push();
+  translate(_x,_y);
+
+  x = a * cos(theta);
+  y = a * sin(theta);
+
+  strokeWeight(50);
+  stroke(255);
+  point(x,y);
+
+  pop();
+
+}
