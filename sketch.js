@@ -3,7 +3,7 @@ let N = 255;
 let L = 255;
 let interval = 1000;
 
-const windowSizeHight = window.innerHeight * 6;
+const windowSizeHight = window.innerHeight * 15;
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
@@ -23,16 +23,27 @@ function draw() {
   background(0);
   var scrY = window.scrollY;
   //console.log(scrY);
-  textSize(40);
-  text(scrY);
+  //  document.getElementById('scr_real').textContent = scrY;
+  if(scrY <= 1000){
+    document.getElementById('scr').textContent = "θ = " + scrY * 6;
+  }
+  if(scrY > 1000 && scrY <= 3000){
+    document.getElementById('scr').textContent = "θ = " + (scrY-1000) * 6;
+  }
+  if(scrY > 3000 && scrY <= 5200){
+    document.getElementById('scr').textContent = " ";
+  }
+  if(scrY > 5200 && scrY <= 7500){
+    document.getElementById('scr').textContent = " ";
+  }
+  if(scrY > 7900 && scrY <= 10399){
+    document.getElementById('scr').textContent = "d = 2, n = " + (scrY-7899);
+  }
+  if(scrY > 10399){
+    document.getElementById('scr').textContent = "";
+  }
 
-  // strokeWeight(2);
-  // noFill();
-  // box(200,200,200);
 
-  // stroke(255);
-  // strokeWeight(200);
-  // point(0,0,0);
 
   if(scrY <= 500){
     drawWave(-window.innerWidth/2,scrY + 500,scrY/10);
@@ -40,21 +51,61 @@ function draw() {
     drawWave(-window.innerWidth/2,1000,scrY/10);
   }
 
+  if(scrY > 500 && scrY <= 1300){
+    drawCircle(0,1700,(scrY-1000)/10);
+  }
+  if(scrY > 1300 && scrY <= 2300){
+    drawCircle(0,scrY + 400,(scrY-1000)/10);
+  }else{
+    drawCircle(0,2700,(scrY-1000)/10);
+  }
+
+  if(scrY > 2700 && scrY <= 3500){
+    drawLissajous(0,3900,(scrY-3000)/100);
+  }
+  if(scrY > 3500 && scrY <= 4500){
+    drawLissajous(0,scrY + 400,(scrY-3000)/100);
+  }else{
+    drawLissajous(0,4900,(scrY-3000)/100);
+  }
+  
+  if(scrY > 4900 && scrY <= 5700){
+    drawSpiral(0,6100,scrY/1000);
+  }
+  if(scrY > 5700 && scrY <= 6700){
+    drawSpiral(0,scrY + 400,scrY/1000);
+  }else{
+    drawSpiral(0,7100,scrY/1000);
+  }
+  
+  if(scrY > 7100 && scrY <= 7900){
+    drawRose(0,8300,1,2);
+  }
+  if(scrY > 7900 && scrY <= 9600){
+    drawRose(0,scrY + 400,scrY-7899,2);
+  }else{
+    drawRose(0,10000,scrY-7899,2);
+  }
+
   //drawCircle(0,500,scrY/10);
+
+  //drawSpiral(0,500,scrY/1000);
+
+  //drawLissajous(0,500,scrY/100);
 
   // count  = scrY;
   // if(scrY <= 6000){
   //   drawTorus(0,500);
   // }
 
-  if(scrY > 500 && scrY <= 1300){
-    drawRose(0,1700,scrY/100,2);
-  }
-  if(scrY > 1300 && scrY <= 2300){
-    drawRose(0,scrY + 400,scrY/100,2);
-  }else{
-    drawRose(0,2700,10,2);
-  }
+  // if(scrY > 500 && scrY <= 1300){
+  //   drawRose(0,1700,scrY/100,2);
+  // }
+  // if(scrY > 1300 && scrY <= 2300){
+  //   drawRose(0,scrY + 400,scrY/100,2);
+  // }else{
+  //   drawRose(0,2700,10,2);
+  // }
 
   //drawMandelbrot(0,0);
 
@@ -149,7 +200,7 @@ function drawHypocycloid(_x,_y,n){
 
   x1 = 0;
   y1 = 0;
-
+pop();
   // for(let i = 0; i<){
 
   // }
@@ -235,10 +286,11 @@ function drawWave(_x,_y,theta){
 function drawCircle(_x,_y,theta){
   var x = 0;
   var y = 0;
-  let a = 100;
+  let a = 300;
 
   push();
   translate(_x,_y);
+  rotateX(-3);
 
   x = a * cos(theta);
   y = a * sin(theta);
@@ -246,7 +298,51 @@ function drawCircle(_x,_y,theta){
   strokeWeight(50);
   stroke(255);
   point(x,y);
+  strokeWeight(1);
+  noFill();
+  line(0,0,x,y);
 
   pop();
 
+}
+
+function drawLissajous(_x,_y,theta){
+  var x,y;
+  let radius = 180;
+  var s = 0;
+
+  push();
+  translate(_x,_y);
+
+  beginShape();
+  s = 30 * sin(theta) + 31;
+
+  for(let i = 0; i < 360; i += s){
+    x = radius * cos(i);
+    y = radius * sin(i);
+    
+    strokeWeight(2);
+    stroke(255);
+    noFill();
+    curveVertex(x,y);
+    curveVertex(y,x);
+  }
+  endShape();
+  pop();
+}
+
+function drawSpiral(_x,_y,a){
+  push();
+  translate(_x,_y);
+
+  rectMode(CENTER);
+
+  noFill();
+  stroke(255,255,255,200);
+
+  for(let i = 0; i<60; i++){
+    rotate(a);
+    rect(0,0,0+i*10,0+i*10);
+  }
+  pop();
 }

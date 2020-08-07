@@ -1,6 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
     <script src="p5.js"></script>
     <script src="p5.sound.min.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8">
     <script src="sketch.js"></script>
@@ -10,6 +11,150 @@
   <body>
     <body style="color:white">
        <!-- <h2>Find your favorite formula</h2> -->
-      <br>A<br>A<br>A<br>A<br>A5<br>A<br>A<br>A<br>A<br>A10<br>A<br>A<br>A<br>A<br>A15<br>A<br>A<br>A<br>A<br>A20<br>A<br>A<br>A<br>A<br>A25<br>A<br>A<br>A<br>A<br>A30<br>A<br>A<br>A<br>A<br>A35<br>A<br>A<br>A<br>A<br>A40<br>A<br>A<br>A<br>A<br>A45<br>A<br>A<br>A<br>A<br>A50<br>A<br>A<br>A<br>A<br>A55<br>A<br>A<br>A<br>A<br>A60<br>A<br>A<br>A<br>A<br>A65<br>A<br>A<br>A<br>A<br>A70
+       
+      <!-- <br>A<br>A<br>A<br>A<br>A5<br>A<br>A<br>A<br>A<br>A10
+      <br>A<br>A<br>A<br>A<br>A15<br>A<br>A<br>A<br>A<br>A20
+      <br>A<br>A<br>A<br>A<br>A25<br>A<br>A<br>A<br>A<br>A30
+      <br>A<br>A<br>A<br>A<br>A35<br>A<br>A<br>A<br>A<br>A40
+      <br>A<br>A<br>A<br>A<br>A45<br>A<br>A<br>A<br>A<br>A50
+      <br>A<br>A<br>A<br>A<br>A55<br>A<br>A<br>A<br>A<br>A60
+      <br>A<br>A<br>A<br>A<br>A65<br>A<br>A<br>A<br>A<br>A70 -->
+
+      <div class = "wave">
+        <div class="sticky">
+          <p id = "scr"></p>
+        </div>
+        <p id = "name">Sine wave, cosine wave</p>
+        <math>
+          <mi>y</mi>
+          <mo>=</mo>
+          <mi>sin</mi>
+          <mo>&#x2061;<!–FUNCTION APPLICATION–></mo>
+          <mi>&theta;</mi>
+        </math>
+        ,
+        <math>
+        <mi>y</mi>
+        <mo>=</mo>
+        <mi>cos</mi>
+        <mo>&#x2061;<!–FUNCTION APPLICATION–></mo>
+        <mi>&theta;</mi>
+        </math>
+      </div>
+      <div class = "circle">
+        <p id = "name">Circular motion</p>
+        <math>
+        <mi>x</mi>
+        <mo>=</mo>
+        <mi>cos</mi>
+        <mo>&#x2061;<!–FUNCTION APPLICATION–></mo>
+        <mi>&theta;</mi>
+        </math>
+        <br>
+        <math>
+        <mi>y</mi>
+        <mo>=</mo>
+        <mi>sin</mi>
+        <mo>&#x2061;<!–FUNCTION APPLICATION–></mo>
+        <mi>&theta;</mi>
+        </math>
+      </div>
+      <div class = "lissajous">
+        <p id = "name"> Lissajous curve</p>
+        <math>
+        <mi>x</mi>
+        <mo>=</mo>
+        <mi>A</mi>
+        <mi>sin</mi>
+        (
+          <mi>a</mi>
+          <mi>&theta;</mi>
+          <mo>+</mo>
+          <mi>δ</mi>
+        )
+        </math>
+        <br>
+        <math>
+        <mi>y</mi>
+        <mo>=</mo>
+        <mi>B</mi>
+        <mi>sin</mi>
+        (
+          <mi>b</mi>
+          <mi>&theta;</mi>
+        )
+        </math></div>
+      <div class = "spiral">
+        <p id = "name"> Logarithmic spiral</p>
+        <math>
+          <mi>x</mi>
+          <mo>=</mo>
+          <mi>a</mi>
+        </math>
+        e^
+        <math>
+          <mi>b</mi>
+          <mi>&theta;</mi>
+          <mo>*</mo>
+          <mi>cos</mi>
+          <mo>&#x2061;<!–FUNCTION APPLICATION–></mo>
+          <mi>&theta;</mi>
+        </math>
+        <br>
+        <math>
+          <mi>y</mi>
+          <mo>=</mo>
+          <mi>a</mi>
+        </math>
+          e^
+        <math>
+          <mi>b</mi>
+          <mi>&theta;</mi>
+          <mo>*</mo>
+          <mi>sin</mi>
+          <mo>&#x2061;<!–FUNCTION APPLICATION–></mo>
+          <mi>&theta;</mi>
+        </math></div>
+      <div class = "rose">
+        <p id = "name"> Rose curve</p>
+        <math>
+          <mi>x</mi>
+          <mo>=</mo>
+          <mi>sin</mi>
+        </math>
+          (
+        <math>
+          <mi>n</mi>
+          <mo>/</mo>
+          <mi>d</mi>
+          <mi>&theta;</mi>
+        </math>
+          )
+        <math>
+          <mi>cos</mi>
+          <mo>&#x2061;<!–FUNCTION APPLICATION–></mo>
+          <mi>&theta;</mi>
+        </math>
+        <br>
+        <math>
+          <mi>y</mi>
+          <mo>=</mo>
+          <mi>sin</mi>
+        </math>
+          (
+        <math>
+          <mi>n</mi>
+          <mo>/</mo>
+          <mi>d</mi>
+          <mi>&theta;</mi>
+        </math>
+          )
+        <math>
+          <mi>sin</mi>
+          <mo>&#x2061;<!–FUNCTION APPLICATION–></mo>
+          <mi>&theta;</mi>
+        </math>
+      </div>
+      <!-- <p id = "scr_real"></p> -->
     </body>
 </body></html>
